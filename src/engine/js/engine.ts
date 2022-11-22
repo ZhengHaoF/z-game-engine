@@ -1,0 +1,273 @@
+import axios from "axios";
+import {ref} from "vue";
+let jjj = {
+    "name":"剧本名",
+    "info":"剧本信息",
+    "author":"作者",
+    "chapter":[
+        {
+            "name":"章节名",
+            "info":"章节信息",
+            "material":{
+                "roleList":[
+                    {
+                        "name":"姓名",
+                        "img":"立绘",
+                        "headImg":"头图"
+                    }
+                ],
+                "backgroundList":[
+                    {
+                        "name":"名称",
+                        "src":"位置"
+                    }
+                ],
+                "musicList":{
+                    "role":[
+                        {
+                            "name":"名称",
+                            "src":"位置"
+                        }
+                    ],
+                    "background":[
+                        {
+                            "name":"名称",
+                            "src":"位置"
+                        }
+                    ],
+                    "source":[
+                        {
+                            "name":"名称",
+                            "src":"位置"
+                        }
+                    ]
+                }
+            },
+            "node":[
+                {
+                    "id":"id",
+                    "dialogue":{
+                        "name":"名称",
+                        "headImg":"/assets/headImg/extra_stand_dialog+pimg+6513.png",
+                        "content":"你好世界"
+                    },
+                    "role":[
+                        {
+                            "name":"人物名称",
+                            "status":"状态",
+                            "position":"方位"
+                        }
+                    ],
+                    "background":{
+                        "name":"背景名称"
+                    },
+                    "music":{
+                        "backgroundMusic":{
+                            "name":"背景音乐名"
+                        },
+                        "roleMusic":{
+                            "name":"人物音乐名"
+                        }
+                    }
+                },
+                {
+                    "id":"id",
+                    "dialogue":{
+                        "name":"名称",
+                        "headImg":"/assets/headImg/extra_stand_dialog+pimg+6513.png",
+                        "content":"我是ZHF"
+                    },
+                    "role":[
+                        {
+                            "name":"人物名称",
+                            "status":"状态",
+                            "position":"方位"
+                        }
+                    ],
+                    "background":{
+                        "name":"背景名称"
+                    },
+                    "music":{
+                        "backgroundMusic":{
+                            "name":"背景音乐名"
+                        },
+                        "roleMusic":{
+                            "name":"人物音乐名"
+                        }
+                    }
+                },
+                {
+                    "id":"id",
+                    "dialogue":{
+                        "name":"名称",
+                        "headImg":"/assets/headImg/extra_stand_dialog+pimg+6513.png",
+                        "content":"这是一个测试项目"
+                    },
+                    "role":[
+                        {
+                            "name":"人物名称",
+                            "status":"状态",
+                            "position":"方位"
+                        }
+                    ],
+                    "background":{
+                        "name":"背景名称"
+                    },
+                    "music":{
+                        "backgroundMusic":{
+                            "name":"背景音乐名"
+                        },
+                        "roleMusic":{
+                            "name":"人物音乐名"
+                        }
+                    }
+                },
+                {
+                    "id":"id",
+                    "dialogue":{
+                        "name":"名称",
+                        "headImg":"/assets/headImg/extra_stand_dialog+pimg+6513.png",
+                        "content":"我将在这里演示z-game-engine引擎的一些功能"
+                    },
+                    "role":[
+                        {
+                            "name":"人物名称",
+                            "status":"状态",
+                            "position":"方位"
+                        }
+                    ],
+                    "background":{
+                        "name":"背景名称"
+                    },
+                    "music":{
+                        "backgroundMusic":{
+                            "name":"背景音乐名"
+                        },
+                        "roleMusic":{
+                            "name":"人物音乐名"
+                        }
+                    }
+                },
+                {
+                    "id":"id",
+                    "dialogue":{
+                        "name":"名称",
+                        "headImg":"/assets/headImg/extra_stand_dialog+pimg+6513.png",
+                        "content":"那个泳池是背景图"
+                    },
+                    "role":[
+                        {
+                            "name":"人物名称",
+                            "status":"状态",
+                            "position":"right"
+                        }
+                    ],
+                    "background":{
+                        "name":"背景名称"
+                    },
+                    "music":{
+                        "backgroundMusic":{
+                            "name":"背景音乐名"
+                        },
+                        "roleMusic":{
+                            "name":"人物音乐名"
+                        }
+                    }
+                },
+                {
+                    "id":"id",
+                    "dialogue":{
+                        "name":"名称",
+                        "headImg":"/assets/headImg/extra_stand_dialog+pimg+6513.png",
+                        "content":"对话左边的是我的头图（headImage）"
+                    },
+                    "role":[
+                        {
+                            "name":"人物名称",
+                            "status":"状态",
+                            "position":"方位"
+                        }
+                    ],
+                    "background":{
+                        "name":"背景名称"
+                    },
+                    "music":{
+                        "backgroundMusic":{
+                            "name":"背景音乐名"
+                        },
+                        "roleMusic":{
+                            "name":"人物音乐名"
+                        }
+                    }
+                },
+                {
+                    "id":"id",
+                    "dialogue":{
+                        "name":"名称",
+                        "headImg":"/assets/headImg/extra_stand_dialog+pimg+6513.png",
+                        "content":"现在出现的是我的立绘"
+                    },
+                    "role":[
+                        {
+                            "name":"人物名称",
+                            "status":"状态",
+                            "position":"方位"
+                        }
+                    ],
+                    "background":{
+                        "name":"背景名称"
+                    },
+                    "music":{
+                        "backgroundMusic":{
+                            "name":"背景音乐名"
+                        },
+                        "roleMusic":{
+                            "name":"人物音乐名"
+                        }
+                    }
+                },
+
+            ]
+        }
+    ]
+}
+//左画布
+let canvasLeft:HTMLElement;
+//右画布
+let canvasRight:HTMLElement;
+//中画布
+let canvasMiddle:HTMLElement;
+//
+let footerHeaderImg:HTMLElement;
+//文字
+let footerMain:HTMLElement;
+//当前节点
+let nodeIndex:number = 0;
+//所有节点
+let allNode = jjj.chapter[0].node
+//当前背景音乐
+let bgAudio:HTMLElement;
+export const initEngine = function (){
+    canvasLeft = document.getElementById("canvas-left") as HTMLElement;
+    canvasRight = document.getElementById("canvas-right") as HTMLElement;
+    canvasMiddle = document.getElementById("canvas-middle") as HTMLElement;
+    footerHeaderImg = document.getElementById("footer-header-img") as HTMLElement;
+    footerMain = document.getElementById("footer-main") as HTMLElement;
+    bgAudio = document.getElementById("bg-audio") as HTMLElement;
+    footerMain.onclick = ()=>{
+        tets()
+    }
+    document.onclick = function (){
+        // @ts-ignore
+        bgAudio.play();
+    }
+}
+export const tets = function (){
+    if (nodeIndex >= allNode.length){
+        alert("剧本已完成");
+        return
+    }
+    footerMain.innerText = allNode[nodeIndex].dialogue.content;
+    footerHeaderImg.style.backgroundImage = `url(${allNode[nodeIndex].dialogue.headImg})`;
+    nodeIndex++
+}
