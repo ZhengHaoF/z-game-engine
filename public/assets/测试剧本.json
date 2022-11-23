@@ -52,7 +52,14 @@
           "dialogue":{
             "name":"ZHF",
             "headImg":"",
-            "content":"你好世界"
+            "content":[
+              "你好世界",
+              "我是郑浩枫",
+              "这是一个测试项目",
+              "我将在这里演示z-game-engine引擎的一些功能",
+              "那个泳池是背景图",
+              "对话左边的是我的头图（headImage）"
+            ]
           },
           "role":[
             {
@@ -78,137 +85,7 @@
           "dialogue":{
             "name":"ZHF",
             "headImg":"",
-            "content":"我是ZHF"
-          },
-          "role":[
-            {
-              "name":"人物名称",
-              "status":"状态",
-              "position":"方位"
-            }
-          ],
-          "background":{
-            "name":"bg1"
-          },
-          "music":{
-            "backgroundMusic":{
-              "name":"bgm1"
-            },
-            "roleMusic":{
-              "name":"人物音乐名"
-            }
-          }
-        },
-        {
-          "id":"id",
-          "dialogue":{
-            "name":"ZHF",
-            "headImg":"",
-            "content":"这是一个测试项目"
-          },
-          "role":[
-            {
-              "name":"人物名称",
-              "status":"状态",
-              "position":"方位"
-            }
-          ],
-          "background":{
-            "name":"bg1"
-          },
-          "music":{
-            "backgroundMusic":{
-              "name":"bgm1"
-            },
-            "roleMusic":{
-              "name":"人物音乐名"
-            }
-          }
-        },
-        {
-          "id":"id",
-          "dialogue":{
-            "name":"ZHF",
-            "headImg":"",
-            "content":"我将在这里演示z-game-engine引擎的一些功能"
-          },
-          "role":[
-            {
-              "name":"人物名称",
-              "status":"状态",
-              "position":"方位"
-            }
-          ],
-          "background":{
-            "name":"bg1"
-          },
-          "music":{
-            "backgroundMusic":{
-              "name":"bgm1"
-            },
-            "roleMusic":{
-              "name":"人物音乐名"
-            }
-          }
-        },
-        {
-          "id":"id",
-          "dialogue":{
-            "name":"ZHF",
-            "headImg":"",
-            "content":"那个泳池是背景图"
-          },
-          "role":[
-            {
-              "name":"人物名称",
-              "status":"状态",
-              "position":"位置"
-            }
-          ],
-          "background":{
-            "name":"bg1"
-          },
-          "music":{
-            "backgroundMusic":{
-              "name":"bgm1"
-            },
-            "roleMusic":{
-              "name":"人物音乐名"
-            }
-          }
-        },
-        {
-          "id":"id",
-          "dialogue":{
-            "name":"ZHF",
-            "headImg":"",
-            "content":"对话左边的是我的头图（headImage）"
-          },
-          "role":[
-            {
-              "name":"人物名称",
-              "status":"状态",
-              "position":"方位"
-            }
-          ],
-          "background":{
-            "name":"bg1"
-          },
-          "music":{
-            "backgroundMusic":{
-              "name":"bgm1"
-            },
-            "roleMusic":{
-              "name":"人物音乐名"
-            }
-          }
-        },
-        {
-          "id":"id",
-          "dialogue":{
-            "name":"ZHF",
-            "headImg":"",
-            "content":"现在出现的是我的立绘"
+            "content":["现在出现的是我的立绘（roleImage）"]
           },
           "role":[
             {
@@ -234,17 +111,17 @@
           "dialogue":{
             "name":"ZHF",
             "headImg":"",
-            "content":"当然，右边也有一个人物位置"
+            "content":["当然，右边也有一个人物位置"]
           },
           "role":[
             {
               "name":"ZHF",
-              "status":"状态",
+              "status":"in",
               "position":"left"
             },
             {
               "name":"ZHF2",
-              "status":"状态",
+              "status":"in",
               "position":"right"
             }
           ],
@@ -265,17 +142,17 @@
           "dialogue":{
             "name":"ZHF",
             "headImg":"",
-            "content":"现在播放的是人物语音测试，我也不知道讲的是啥"
+            "content":["现在播放的是人物语音测试，我也不知道讲的是啥"]
           },
           "role":[
             {
               "name":"ZHF",
-              "status":"状态",
+              "status":"unchanged",
               "position":"left"
             },
             {
               "name":"ZHF2",
-              "status":"状态",
+              "status":"unchanged",
               "position":"right"
             }
           ],
@@ -296,13 +173,22 @@
           "dialogue":{
             "name":"ZHF",
             "headImg":"",
-            "content":"好了，到这里就结束了"
+            "content":[
+              "好了，到这里就结束了",
+              "感谢你的观看",
+              "拜拜~"
+            ]
           },
           "role":[
             {
               "name":"ZHF",
-              "status":"状态",
+              "status":"unchanged",
               "position":"left"
+            },
+            {
+              "name":"",
+              "status":"out",
+              "position":"right"
             }
           ],
           "background":{

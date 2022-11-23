@@ -1,72 +1,72 @@
 import axios from "axios";
 
 interface operaFace {
-    name: String,
-    info: String,
-    author: String,
+    name: string,
+    info: string,
+    author: string,
     chapter: [
         {
-            name: String,
-            info: String,
+            name: string,
+            info: string,
             material: {
                 roleList: [
                     {
-                        name?: String,
-                        img?: String,
-                        headImg?: String
+                        name?: string,
+                        img?: string,
+                        headImg?: string
                     }
                 ],
                 backgroundList: [
                     {
-                        name?: String,
-                        src?: String
+                        name?: string,
+                        src?: string
                     }
                 ],
                 musicList: {
                     role?: [
                         {
-                            name?: String,
-                            src?: String
+                            name?: string,
+                            src?: string
                         }
                     ],
                     background: [
                         {
-                            name?: String,
-                            src?: String
+                            name?: string,
+                            src?: string
                         }
                     ],
                     material: [
                         {
-                            name?: String,
-                            src?: String
+                            name?: string,
+                            src?: string
                         }
                     ]
                 }
             },
             node: [
                 {
-                    id?: String,
+                    id?: string,
                     dialogue: {
-                        name?: String,
-                        headImg?: String,
-                        content?: String
+                        name?: string,
+                        headImg?: string,
+                        content?:[]
                     },
                     role: [
                         {
-                            name?: String,
-                            status?: String,
-                            position?: String
+                            name?: string,
+                            status?: string,
+                            position?: string
                         }
                     ],
                     background: {
-                        name?: String
+                        name?: string
                     },
                     music: {
                         backgroundMusic?: {
-                            name?: String
+                            name?: string
                         },
                         roleMusic?: {
-                            name?: String
+                            name?: string
                         }
                     }
                 }
@@ -109,7 +109,7 @@ class Material {
      * 根据人物名获取人物信息
      * @param name 人物名
      */
-    getRoleInfo(name: String): any {
+    getRoleInfo(name: string): any {
         for (let item of this.roleList) {
             if (item['name'] === name) {
                 return item
@@ -125,7 +125,7 @@ class Material {
      * 根据背景名获取背景信息
      * @param name 背景名
      */
-    getBackgroundInfo(name: String) {
+    getBackgroundInfo(name: string) {
         for (let item of this.backgroundList) {
             if (item['name'] === name) {
                 return item
@@ -140,7 +140,7 @@ class Material {
      * 根据人物音乐名获取音乐信息
      * @param name 音乐名
      */
-    getRoleMusicInfo(name: String) {
+    getRoleMusicInfo(name: string) {
         for (let item of this.roleMusicList) {
             if (item['name'] === name) {
                 return item
@@ -154,7 +154,7 @@ class Material {
      * 根据背景音乐名获取音乐信息
      * @param name 音乐名
      */
-    getBackgroundMusicInfo(name: String) {
+    getBackgroundMusicInfo(name: string) {
         for (let item of this.backgroundMusicList) {
             if (item['name'] === name) {
                 return item
@@ -198,6 +198,8 @@ export const initEngine = async function () {
     }
     //-------------载入剧本---------------
 }
+//当前文字节点
+let textIndex:number = 0;
 const nextNode = function () {
     if (nodeIndex >= gameMaterial.allNode.length) {
         alert("剧本已完成");
@@ -213,40 +215,68 @@ const nextNode = function () {
     //人物音乐
     let nodeRoleMusicName = nowNodeInfo.music.roleMusic.name;
     //人物
-    let nodeRoleList = nowNodeInfo.role
-    if(nodeIndex === 0 || nodeBackgroundName !== gameMaterial.getBackgroundInfo(nodeBackgroundName)['name']){
+    let nodeRoleList = nowNodeInfo.role;
+
+    // @ts-ignore
+    if( String(gameDom.bgAudio.src).indexOf(gameMaterial.getBackgroundMusicInfo(nodeBackgroundMusicName)['src']) === -1){
         //如果前后两个的背景音乐相同，就不修改了
         //加载背景音乐
         // @ts-ignore
-        gameDom.bgAudio.src = gameMaterial.getBackgroundMusicInfo(nodeBackgroundMusicName)['src'];
+        gameDom.bgAudio.src = gameMaterial.getBackgroundMusicInfo(nodeBackgroundMusicName)['src'] || "";
     }
+
     //人物音乐
     // @ts-ignore
     gameDom.roleAudio.src = gameMaterial.getRoleMusicInfo(nodeRoleMusicName)['src'] || "";
     //渲染背景图
     gameDom.main.style.backgroundImage = `url(${gameMaterial.getBackgroundInfo(nodeBackgroundName)['src'] || ""})`
-    //渲染文字
-    gameDom.footerMainText.innerText = nowNodeInfo.dialogue.content;
 
-    gameDom.footerMainText.classList.add("animate__animated","animate__fadeIn")
-    gameDom.footerMain.onclick = null;
-    setTimeout(()=>{
-        gameDom.footerMainText.classList.remove("animate__animated","animate__fadeIn");
-        gameDom.footerMain.onclick = () => {
-            nextNode()
-        }
-    },500)
+
     //渲染头图
     gameDom.footerHeaderImg.style.backgroundImage = `url(${gameMaterial.getRoleInfo(nodeRoleName)['headImg'] || ""})`;
     //渲染人物
     nodeRoleList.forEach((item:any)=>{
         if (item.position === "left"){
             //左边人物
-            gameDom.canvasLeft.style.backgroundImage = `url(${gameMaterial.getRoleInfo(item.name)['roleImg']  || ""})`;
+            if (String(gameDom.canvasLeft.style.backgroundImage).indexOf(gameMaterial.getRoleInfo(item.name)['roleImg']) === -1){
+                gameDom.canvasLeft.style.backgroundImage = `url(${gameMaterial.getRoleInfo(item.name)['roleImg']  || ""})`;
+                addAnimation(gameDom.canvasLeft,"animate__fadeIn")
+            }
         }else if(item.position === "right"){
             //右边人物
-            gameDom.canvasRight.style.backgroundImage = `url(${gameMaterial.getRoleInfo(item.name)['roleImg'] || ""})`;
+            if (String(gameDom.canvasRight.style.backgroundImage).indexOf(gameMaterial.getRoleInfo(item.name)['roleImg']) === -1) {
+                gameDom.canvasRight.style.backgroundImage = `url(${gameMaterial.getRoleInfo(item.name)['roleImg'] || ""})`;
+                addAnimation(gameDom.canvasRight,"animate__fadeIn")
+
+            }
         }
+
     })
+    //渲染文字（文字内容可以有多个）
+    gameDom.footerMainText.innerText = nowNodeInfo.dialogue.content[textIndex];
+    addAnimation(gameDom.footerMainText,"animate__fadeIn")
+    textIndex++
+    if (textIndex < nowNodeInfo.dialogue.content.length){
+        //如果当前文字还没现实完，则node不加
+        return;
+    }
+    //文字复位
+    textIndex = 0;
     nodeIndex++
+}
+
+/**
+ * 给DOM添加动画
+ * @param dom
+ * @param animationName 动画名
+ */
+const addAnimation = function (dom:HTMLElement,animationName:string){
+    dom.classList.add("animate__animated",animationName)
+    gameDom.footerMain.onclick = null;
+    setTimeout(() => {
+        dom.classList.remove("animate__animated", animationName);
+        gameDom.footerMain.onclick = () => {
+            nextNode()
+        }
+    }, 500)
 }

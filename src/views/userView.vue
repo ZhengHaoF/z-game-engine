@@ -1,7 +1,7 @@
 <template>
   <div id="main">
-    <audio id="bg-audio" class="game-audio" preload="auto" controls autoplay loop src=""></audio>
-    <audio id="role-audio" class="game-audio" preload="auto" controls autoplay loop src=""></audio>
+    <audio id="bg-audio" class="game-audio" preload="auto" autoplay loop src=""></audio>
+    <audio id="role-audio" class="game-audio" preload="auto" autoplay src=""></audio>
     <div id="canvas">
       <div id="canvas-left">
 
@@ -104,12 +104,10 @@ onMounted(() => {
 
 #footer-header-img {
   background-repeat: no-repeat;
-  background-position: center;
-  box-sizing: border-box;
   background-position-x: center;
-  background-position-y: center;
-  width: 120px;
-  height: 120px;
+  background-clip: border-box;
+  width: 100px;
+  height: 100px;
   border-radius: 999px;
   overflow: hidden;
   text-align: center;
@@ -133,5 +131,6 @@ onMounted(() => {
   color: #cccccc;
   font-size: 1.5em;
   padding: 20px;
+  user-select: none;
 }
 </style>
