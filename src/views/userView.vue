@@ -4,6 +4,7 @@
     <audio id="role-audio" class="game-audio" preload="auto" controls autoplay loop src=""></audio>
     <div id="canvas">
       <div id="canvas-left">
+
       </div>
       <div id="canvas-middle">
 
@@ -19,13 +20,16 @@
         </div>
       </div>
       <div id="footer-main">
+        <div id="footer-main-text">
 
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
+import 'animate.css';
 import {initEngine} from "../engine/js/engine"
 import {onMounted} from "vue";
 
@@ -122,11 +126,12 @@ onMounted(() => {
   background-color: #000000AA;
   height: 100%;
   float: left;
+  box-sizing: border-box;
+  z-index: 10;
+}
+#footer-main-text{
   color: #cccccc;
   font-size: 1.5em;
   padding: 20px;
-  box-sizing: border-box;
-  z-index: 10;
-
 }
 </style>

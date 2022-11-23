@@ -28,8 +28,8 @@
         "musicList":{
           "role":[
             {
-              "name":"名称",
-              "src":"位置"
+              "name":"ogg1",
+              "src":"/assets/music/roleMusic/asumi111_019.ogg"
             }
           ],
           "background":[
@@ -257,6 +257,63 @@
             },
             "roleMusic":{
               "name":"人物音乐名"
+            }
+          }
+        },
+        {
+          "id":"id",
+          "dialogue":{
+            "name":"ZHF",
+            "headImg":"",
+            "content":"现在播放的是人物语音测试，我也不知道讲的是啥"
+          },
+          "role":[
+            {
+              "name":"ZHF",
+              "status":"状态",
+              "position":"left"
+            },
+            {
+              "name":"ZHF2",
+              "status":"状态",
+              "position":"right"
+            }
+          ],
+          "background":{
+            "name":"bg1"
+          },
+          "music":{
+            "backgroundMusic":{
+              "name":"bgm1"
+            },
+            "roleMusic":{
+              "name":"ogg1"
+            }
+          }
+        },
+        {
+          "id":"id",
+          "dialogue":{
+            "name":"ZHF",
+            "headImg":"",
+            "content":"好了，到这里就结束了"
+          },
+          "role":[
+            {
+              "name":"ZHF",
+              "status":"状态",
+              "position":"left"
+            }
+          ],
+          "background":{
+            "name":"bg1"
+          },
+          "music":{
+            "backgroundMusic":{
+              "name":"bgm1"
+            },
+            "roleMusic":{
+              "name":""
             }
           }
         }

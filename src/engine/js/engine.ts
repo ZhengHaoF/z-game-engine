@@ -87,10 +87,12 @@ class Dom {
     public canvasRight: HTMLElement = document.getElementById("canvas-right") as HTMLElement;
     //中画布
     public canvasMiddle: HTMLElement = document.getElementById("canvas-middle") as HTMLElement;
+    //整个底部
+    public footerMain: HTMLElement = document.getElementById("footer-main") as HTMLElement;
     //底部头图
     public footerHeaderImg: HTMLElement = document.getElementById("footer-header-img") as HTMLElement;
     //文字
-    public footerMain: HTMLElement = document.getElementById("footer-main") as HTMLElement;
+    public footerMainText: HTMLElement = document.getElementById("footer-main-text") as HTMLElement;
     //背景音乐
     public bgAudio: HTMLElement = document.getElementById("bg-audio") as HTMLElement;
     //人物音乐
@@ -113,6 +115,7 @@ class Material {
                 return item
             }
         }
+        return ""
     }
 
     //背景列表
@@ -128,6 +131,7 @@ class Material {
                 return item
             }
         }
+        return ""
     }
 
     //人物音乐列表
@@ -142,6 +146,7 @@ class Material {
                 return item
             }
         }
+        return ""
     }
     //背景音乐列表
     public backgroundMusicList: any;
@@ -155,6 +160,7 @@ class Material {
                 return item
             }
         }
+        return ""
     }
 }
 
@@ -197,34 +203,49 @@ const nextNode = function () {
         alert("剧本已完成");
         return
     }
+    let nowNodeInfo = gameMaterial.allNode[nodeIndex];
     //对话人物名
-    let nodeRoleName = gameMaterial.allNode[nodeIndex].dialogue.name;
+    let nodeRoleName = nowNodeInfo.dialogue.name;
     //背景
-    let nodeBackgroundName = gameMaterial.allNode[nodeIndex].background.name;
+    let nodeBackgroundName = nowNodeInfo.background.name;
     //背景音乐
-    let nodeBackgroundMusicName = gameMaterial.allNode[nodeIndex].music.backgroundMusic.name;
+    let nodeBackgroundMusicName = nowNodeInfo.music.backgroundMusic.name;
+    //人物音乐
+    let nodeRoleMusicName = nowNodeInfo.music.roleMusic.name;
     //人物
-    let nodeRoleList = gameMaterial.allNode[nodeIndex].role
+    let nodeRoleList = nowNodeInfo.role
     if(nodeIndex === 0 || nodeBackgroundName !== gameMaterial.getBackgroundInfo(nodeBackgroundName)['name']){
         //如果前后两个的背景音乐相同，就不修改了
         //加载背景音乐
         // @ts-ignore
-        gameDom.bgAudio.src = gameMaterial.getBackgroundMusicInfo(nodeBackgroundMusicName).src;
+        gameDom.bgAudio.src = gameMaterial.getBackgroundMusicInfo(nodeBackgroundMusicName)['src'];
     }
+    //人物音乐
+    // @ts-ignore
+    gameDom.roleAudio.src = gameMaterial.getRoleMusicInfo(nodeRoleMusicName)['src'] || "";
     //渲染背景图
-    gameDom.main.style.backgroundImage = `url(${gameMaterial.getBackgroundInfo(nodeBackgroundName)['src']})`
+    gameDom.main.style.backgroundImage = `url(${gameMaterial.getBackgroundInfo(nodeBackgroundName)['src'] || ""})`
     //渲染文字
-    gameDom.footerMain.innerText = gameMaterial.allNode[nodeIndex].dialogue.content;
+    gameDom.footerMainText.innerText = nowNodeInfo.dialogue.content;
+
+    gameDom.footerMainText.classList.add("animate__animated","animate__fadeIn")
+    gameDom.footerMain.onclick = null;
+    setTimeout(()=>{
+        gameDom.footerMainText.classList.remove("animate__animated","animate__fadeIn");
+        gameDom.footerMain.onclick = () => {
+            nextNode()
+        }
+    },500)
     //渲染头图
-    gameDom.footerHeaderImg.style.backgroundImage = `url(${gameMaterial.getRoleInfo(nodeRoleName)['headImg']})`;
+    gameDom.footerHeaderImg.style.backgroundImage = `url(${gameMaterial.getRoleInfo(nodeRoleName)['headImg'] || ""})`;
     //渲染人物
     nodeRoleList.forEach((item:any)=>{
         if (item.position === "left"){
             //左边人物
-            gameDom.canvasLeft.style.backgroundImage = `url(${gameMaterial.getRoleInfo(item.name)['roleImg']})`;
+            gameDom.canvasLeft.style.backgroundImage = `url(${gameMaterial.getRoleInfo(item.name)['roleImg']  || ""})`;
         }else if(item.position === "right"){
             //右边人物
-            gameDom.canvasRight.style.backgroundImage = `url(${gameMaterial.getRoleInfo(item.name)['roleImg']})`;
+            gameDom.canvasRight.style.backgroundImage = `url(${gameMaterial.getRoleInfo(item.name)['roleImg'] || ""})`;
         }
     })
     nodeIndex++
