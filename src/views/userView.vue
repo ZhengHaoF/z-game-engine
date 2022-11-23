@@ -1,7 +1,7 @@
 <template>
   <div id="main">
-    <audio id="bg-audio" preload="auto" controls autoplay loop src="/assets/music/backgroundMusic/BGM01.mp3"></audio>
-
+    <audio id="bg-audio" class="game-audio" preload="auto" controls autoplay loop src=""></audio>
+    <audio id="role-audio" class="game-audio" preload="auto" controls autoplay loop src=""></audio>
     <div id="canvas">
       <div id="canvas-left">
       </div>
@@ -26,23 +26,21 @@
 </template>
 
 <script lang="ts" setup>
-import {initEngine, tets} from "../engine/js/engine"
+import {initEngine} from "../engine/js/engine"
 import {onMounted} from "vue";
 
 onMounted(() => {
   initEngine()
-  tets()
 })
 </script>
 
 <style scoped>
-#bg-audio{
+.game-audio{
   position: absolute;
   opacity: 0;
 }
 #main {
   background-color: #ccc;
-  background-image: url('/assets/backgroundImg/その他_プールA.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -57,6 +55,7 @@ onMounted(() => {
 #footer {
   height: 20%;
   width: 100%;
+  z-index: 9999;
 }
 
 #canvas-left {
@@ -64,6 +63,12 @@ onMounted(() => {
   /*background-color: green;*/
   float: left;
   height: 100%;
+  /*background-image: url("/assets/roleImg/栞那a_0_1891.png");*/
+  background-clip: content-box;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
 }
 
 #canvas-middle {
@@ -78,6 +83,10 @@ onMounted(() => {
   /*background-color: aqua;*/
   float: left;
   height: 100%;
+  background-clip: content-box;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 #footer-header {
@@ -86,6 +95,7 @@ onMounted(() => {
   height: 100%;
   float: left;
   position: relative;
+  z-index: 10;
 }
 
 #footer-header-img {
@@ -104,6 +114,7 @@ onMounted(() => {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
 }
 
 #footer-main {
@@ -115,5 +126,7 @@ onMounted(() => {
   font-size: 1.5em;
   padding: 20px;
   box-sizing: border-box;
+  z-index: 10;
+
 }
 </style>
