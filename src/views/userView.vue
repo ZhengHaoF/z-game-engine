@@ -25,6 +25,7 @@
         </div>
       </div>
     </div>
+    <div id="max-screen"></div>
   </div>
 </template>
 
@@ -132,5 +133,18 @@ onMounted(() => {
   font-size: 1.5em;
   padding: 20px;
   user-select: none;
+}
+
+#max-screen{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  left: 0;
+  top: 0;
+  background-color: black;
+  font-size: 5em;
+  text-align: center;
+  color: #cccccc;
 }
 </style>

@@ -49,7 +49,7 @@ interface operaFace {
                     dialogue: {
                         name?: string,
                         headImg?: string,
-                        content?:[]
+                        content?: []
                     },
                     role: [
                         {
@@ -97,6 +97,8 @@ class Dom {
     public bgAudio: HTMLElement = document.getElementById("bg-audio") as HTMLElement;
     //人物音乐
     public roleAudio: HTMLElement = document.getElementById("role-audio") as HTMLElement;
+    //黑幕
+    public maxScreen: HTMLElement = document.getElementById("max-screen") as HTMLElement;
 }
 
 class Material {
@@ -136,6 +138,7 @@ class Material {
 
     //人物音乐列表
     public roleMusicList: any;
+
     /**
      * 根据人物音乐名获取音乐信息
      * @param name 音乐名
@@ -148,8 +151,10 @@ class Material {
         }
         return ""
     }
+
     //背景音乐列表
     public backgroundMusicList: any;
+
     /**
      * 根据背景音乐名获取音乐信息
      * @param name 音乐名
@@ -186,6 +191,33 @@ export const initEngine = async function () {
         console.log(err)
         return;
     })
+
+
+    await showMaxScreen()
+    //----------预载入素材-----------
+    //载入人声
+    let loadAudio: any[] = [];
+    gameMaterial.roleMusicList.forEach((item: any, index: number) => {
+        loadAudio[index] = new Audio();
+        loadAudio[index].src = item.src;
+    })
+    let audioInterval = setInterval(() => {
+        let loadOkNum = 0;
+        loadAudio.forEach((item: any, index: number) => {
+            if (item.readyState === 4) {
+                loadOkNum++
+            }
+            if (loadOkNum >= loadAudio.length - 1) {
+                //加载完成
+                clearInterval(audioInterval)
+                hideMaxScreen()
+            }
+        })
+        gameDom.maxScreen.innerText = `人声音频加载载入${loadOkNum}/${loadAudio.length}`;
+        console.log(`人声音频载入${loadOkNum}/${loadAudio.length}`)
+    }, 100);
+    //----------预载入素材-----------
+
     //-------------载入剧本---------------
     nextNode()
     gameDom.footerMain.onclick = () => {
@@ -196,10 +228,11 @@ export const initEngine = async function () {
         // @ts-ignore
         gameDom.bgAudio.play();
     }
+
     //-------------载入剧本---------------
 }
 //当前文字节点
-let textIndex:number = 0;
+let textIndex: number = 0;
 const nextNode = function () {
     if (nodeIndex >= gameMaterial.allNode.length) {
         alert("剧本已完成");
@@ -218,7 +251,7 @@ const nextNode = function () {
     let nodeRoleList = nowNodeInfo.role;
 
     // @ts-ignore
-    if( String(gameDom.bgAudio.src).indexOf(gameMaterial.getBackgroundMusicInfo(nodeBackgroundMusicName)['src']) === -1){
+    if (String(gameDom.bgAudio.src).indexOf(gameMaterial.getBackgroundMusicInfo(nodeBackgroundMusicName)['src']) === -1) {
         //如果前后两个的背景音乐相同，就不修改了
         //加载背景音乐
         // @ts-ignore
@@ -236,33 +269,31 @@ const nextNode = function () {
     //渲染头图
     gameDom.footerHeaderImg.style.backgroundImage = `url(${gameMaterial.getRoleInfo(nodeRoleName)['headImg'] || ""})`;
     //渲染人物
-    nodeRoleList.forEach((item:any)=>{
-        if (item.position === "left"){
+    nodeRoleList.forEach((item: any) => {
+        if (item.position === "left") {
             //左边人物
-            if (String(gameDom.canvasLeft.style.backgroundImage).indexOf(gameMaterial.getRoleInfo(item.name)['roleImg']) === -1){
-                gameDom.canvasLeft.style.backgroundImage = `url(${gameMaterial.getRoleInfo(item.name)['roleImg']  || ""})`;
-                addAnimation(gameDom.canvasLeft,"animate__fadeIn")
+            if (String(gameDom.canvasLeft.style.backgroundImage).indexOf(gameMaterial.getRoleInfo(item.name)['roleImg']) === -1) {
+                gameDom.canvasLeft.style.backgroundImage = `url(${gameMaterial.getRoleInfo(item.name)['roleImg'] || ""})`;
+                addAnimation(gameDom.canvasLeft, "animate__fadeIn")
             }
-        }else if(item.position === "right"){
+        } else if (item.position === "right") {
             //右边人物
             if (String(gameDom.canvasRight.style.backgroundImage).indexOf(gameMaterial.getRoleInfo(item.name)['roleImg']) === -1) {
                 gameDom.canvasRight.style.backgroundImage = `url(${gameMaterial.getRoleInfo(item.name)['roleImg'] || ""})`;
-                addAnimation(gameDom.canvasRight,"animate__fadeIn")
+                addAnimation(gameDom.canvasRight, "animate__fadeIn")
 
             }
         }
 
     })
-    //渲染文字（文字内容可以有多个）
-    gameDom.footerMainText.innerText = nowNodeInfo.dialogue.content[textIndex];
-    addAnimation(gameDom.footerMainText,"animate__fadeIn")
-    //人物音乐
+    //加载人物音乐
     // @ts-ignore
     gameDom.roleAudio.src = gameMaterial.getRoleMusicInfo(nodeRoleMusicList[textIndex])['src'] || "";
-    // console.log(gameMaterial.getRoleMusicInfo(nodeRoleMusicList[textIndex])['src'])
-
+    //渲染文字（文字内容可以有多个）
+    gameDom.footerMainText.innerText = nowNodeInfo.dialogue.content[textIndex];
+    addAnimation(gameDom.footerMainText, "animate__fadeIn")
     textIndex++
-    if (textIndex < nowNodeInfo.dialogue.content.length){
+    if (textIndex < nowNodeInfo.dialogue.content.length) {
         //如果当前文字还没现实完，则node不加
         return;
     }
@@ -276,8 +307,8 @@ const nextNode = function () {
  * @param dom
  * @param animationName 动画名
  */
-const addAnimation = function (dom:HTMLElement,animationName:string){
-    dom.classList.add("animate__animated",animationName)
+const addAnimation =  function (dom: HTMLElement, animationName: string) {
+    dom.classList.add("animate__animated", animationName)
     gameDom.footerMain.onclick = null;
     setTimeout(() => {
         dom.classList.remove("animate__animated", animationName);
@@ -285,4 +316,22 @@ const addAnimation = function (dom:HTMLElement,animationName:string){
             nextNode()
         }
     }, 500)
+}
+
+/**
+ * 黑幕升起
+ */
+const showMaxScreen = async function () {
+    console.log("开始显示")
+    await addAnimation(gameDom.maxScreen, "animate__fadeIn")
+    gameDom.maxScreen.style.zIndex = "10";
+}
+
+/**
+ * 黑幕降落
+ */
+const hideMaxScreen = async function () {
+    console.log("结束显示")
+    await addAnimation(gameDom.maxScreen, "animate__fadeIn")
+    gameDom.maxScreen.style.zIndex = "-1";
 }
