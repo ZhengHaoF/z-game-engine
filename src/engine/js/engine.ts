@@ -213,7 +213,7 @@ const nextNode = function () {
     //背景音乐
     let nodeBackgroundMusicName = nowNodeInfo.music.backgroundMusic.name;
     //人物音乐
-    let nodeRoleMusicName = nowNodeInfo.music.roleMusic.name;
+    let nodeRoleMusicList = nowNodeInfo.music.roleMusic;
     //人物
     let nodeRoleList = nowNodeInfo.role;
 
@@ -223,11 +223,12 @@ const nextNode = function () {
         //加载背景音乐
         // @ts-ignore
         gameDom.bgAudio.src = gameMaterial.getBackgroundMusicInfo(nodeBackgroundMusicName)['src'] || "";
+        //音量调整为0.4
+        // @ts-ignore
+        gameDom.bgAudio.volume = 0.4
     }
 
-    //人物音乐
-    // @ts-ignore
-    gameDom.roleAudio.src = gameMaterial.getRoleMusicInfo(nodeRoleMusicName)['src'] || "";
+
     //渲染背景图
     gameDom.main.style.backgroundImage = `url(${gameMaterial.getBackgroundInfo(nodeBackgroundName)['src'] || ""})`
 
@@ -255,6 +256,11 @@ const nextNode = function () {
     //渲染文字（文字内容可以有多个）
     gameDom.footerMainText.innerText = nowNodeInfo.dialogue.content[textIndex];
     addAnimation(gameDom.footerMainText,"animate__fadeIn")
+    //人物音乐
+    // @ts-ignore
+    gameDom.roleAudio.src = gameMaterial.getRoleMusicInfo(nodeRoleMusicList[textIndex])['src'] || "";
+    // console.log(gameMaterial.getRoleMusicInfo(nodeRoleMusicList[textIndex])['src'])
+
     textIndex++
     if (textIndex < nowNodeInfo.dialogue.content.length){
         //如果当前文字还没现实完，则node不加

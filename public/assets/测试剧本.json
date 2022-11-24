@@ -30,6 +30,50 @@
             {
               "name":"ogg1",
               "src":"/assets/music/roleMusic/asumi111_019.ogg"
+            },
+            {
+              "name":"你好世界",
+              "src":"/assets/music/roleMusic/你好世界.mp3"
+            },
+            {
+              "name":"到这里就结束了",
+              "src":"/assets/music/roleMusic/到这里就结束了.mp3"
+            },
+            {
+              "name":"对话左边的是我的头图",
+              "src":"/assets/music/roleMusic/对话左边的是我的头图.mp3"
+            },
+            {
+              "name":"当然，右边也有一个人物位置",
+              "src":"/assets/music/roleMusic/当然，右边也有一个人物位置.mp3"
+            },
+            {
+              "name":"感谢你的观看",
+              "src":"/assets/music/roleMusic/感谢你的观看.mp3"
+            },
+            {
+              "name":"我是ZHF",
+              "src":"/assets/music/roleMusic/我是ZHF.mp3"
+            },
+            {
+              "name":"拜拜",
+              "src":"/assets/music/roleMusic/拜拜.mp3"
+            },
+            {
+              "name":"演示Z引擎的一些功能",
+              "src":"/assets/music/roleMusic/演示Z引擎的一些功能.mp3"
+            },
+            {
+              "name":"现在出现的是我的立绘",
+              "src":"/assets/music/roleMusic/现在出现的是我的立绘.mp3"
+            },
+            {
+              "name":"这是一个测试项目",
+              "src":"/assets/music/roleMusic/这是一个测试项目.mp3"
+            },
+            {
+              "name":"那个泳池是背景图",
+              "src":"/assets/music/roleMusic/那个泳池是背景图.mp3"
             }
           ],
           "background":[
@@ -53,6 +97,7 @@
             "name":"ZHF",
             "headImg":"",
             "content":[
+              "...",
               "你好世界",
               "我是郑浩枫",
               "这是一个测试项目",
@@ -73,11 +118,17 @@
           },
           "music":{
             "backgroundMusic":{
-              "name":"bgm1"
+              "name": "bgm1"
             },
-            "roleMusic":{
-              "name":"人物音乐名"
-            }
+            "roleMusic":[
+              "...",
+              "你好世界",
+              "我是ZHF",
+              "这是一个测试项目",
+              "演示Z引擎的一些功能",
+              "那个泳池是背景图",
+              "对话左边的是我的头图"
+            ]
           }
         },
         {
@@ -101,9 +152,9 @@
             "backgroundMusic":{
               "name":"bgm1"
             },
-            "roleMusic":{
-              "name":"人物音乐名"
-            }
+            "roleMusic":[
+              "现在出现的是我的立绘"
+            ]
           }
         },
         {
@@ -132,9 +183,9 @@
             "backgroundMusic":{
               "name":"bgm1"
             },
-            "roleMusic":{
-              "name":"人物音乐名"
-            }
+            "roleMusic":[
+              "当然，右边也有一个人物位置"
+            ]
           }
         },
         {
@@ -163,9 +214,9 @@
             "backgroundMusic":{
               "name":"bgm1"
             },
-            "roleMusic":{
-              "name":"ogg1"
-            }
+            "roleMusic":[
+              "ogg1"
+            ]
           }
         },
         {
@@ -198,9 +249,11 @@
             "backgroundMusic":{
               "name":"bgm1"
             },
-            "roleMusic":{
-              "name":""
-            }
+            "roleMusic":[
+              "到这里就结束了",
+              "感谢你的观看",
+              "拜拜"
+            ]
           }
         }
       ]
