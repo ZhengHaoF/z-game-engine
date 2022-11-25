@@ -136,9 +136,9 @@
     "backgroundMusic": {
       "name": "背景音乐名"
     },
-    "roleMusic": {
-      "name": "人物音乐名"
-    }
+    "roleMusic": [
+      "人物音乐"
+    ]
   }
 }
 ```
@@ -147,216 +147,272 @@
 ### 完整示例
 下面是一个完整的剧本示例
 
+您可以尝试在PC浏览器打开Demo地址 [http://demo.engine.zhfblog.top/](http://demo.engine.zhfblog.top/)
+
+
 ```json
 {
-  "name": "剧本名",
-  "info": "剧本信息",
-  "author": "作者",
-  "chapter": [
+  "name":"剧本名",
+  "info":"剧本信息",
+  "author":"作者",
+  "chapter":[
     {
-      "name": "测试章节",
-      "info": "测试用的章节",
-      "material": {
-        "roleList": [
+      "name":"章节名",
+      "info":"章节信息",
+      "material":{
+        "roleList":[
           {
-            "name": "ZHF",
-            "roleImg": "/assets/roleImg/栞那a_0_1891.png",
-            "headImg": "/assets/headImg/extra_stand_dialog+pimg+6513.png"
+            "name":"ZHF",
+            "roleImg":"/assets/roleImg/栞那a_0_1891.png",
+            "headImg":"/assets/headImg/extra_stand_dialog+pimg+6513.png"
           },
           {
-            "name": "ZHF2",
-            "roleImg": "/assets/roleImg/栞那a_0_1891.png",
-            "headImg": "/assets/headImg/extra_stand_dialog+pimg+6513.png"
+            "name":"ZHF2",
+            "roleImg":"/assets/roleImg/栞那a_0_1891.png",
+            "headImg":"/assets/headImg/extra_stand_dialog+pimg+6513.png"
           }
         ],
-        "backgroundList": [
+        "backgroundList":[
           {
-            "name": "bg1",
-            "src": "/assets/backgroundImg/その他_プールA.png"
+            "name":"bg1",
+            "src":"/assets/backgroundImg/その他_プールA.png"
           }
         ],
-        "musicList": {
-          "role": [
+        "musicList":{
+          "role":[
             {
-              "name": "ogg1",
-              "src": "/assets/music/roleMusic/asumi111_019.ogg"
+              "name":"ogg1",
+              "src":"/assets/music/roleMusic/asumi111_019.ogg"
+            },
+            {
+              "name":"你好世界",
+              "src":"/assets/music/roleMusic/你好世界.mp3"
+            },
+            {
+              "name":"到这里就结束了",
+              "src":"/assets/music/roleMusic/到这里就结束了.mp3"
+            },
+            {
+              "name":"对话左边的是我的头图",
+              "src":"/assets/music/roleMusic/对话左边的是我的头图.mp3"
+            },
+            {
+              "name":"当然，右边也有一个人物位置",
+              "src":"/assets/music/roleMusic/当然，右边也有一个人物位置.mp3"
+            },
+            {
+              "name":"感谢你的观看",
+              "src":"/assets/music/roleMusic/感谢你的观看.mp3"
+            },
+            {
+              "name":"我是ZHF",
+              "src":"/assets/music/roleMusic/我是ZHF.mp3"
+            },
+            {
+              "name":"拜拜",
+              "src":"/assets/music/roleMusic/拜拜.mp3"
+            },
+            {
+              "name":"演示Z引擎的一些功能",
+              "src":"/assets/music/roleMusic/演示Z引擎的一些功能.mp3"
+            },
+            {
+              "name":"现在出现的是我的立绘",
+              "src":"/assets/music/roleMusic/现在出现的是我的立绘.mp3"
+            },
+            {
+              "name":"这是一个测试项目",
+              "src":"/assets/music/roleMusic/这是一个测试项目.mp3"
+            },
+            {
+              "name":"那个泳池是背景图",
+              "src":"/assets/music/roleMusic/那个泳池是背景图.mp3"
             }
           ],
-          "background": [
+          "background":[
             {
-              "name": "bgm1",
-              "src": "/assets/music/backgroundMusic/BGM01.mp3"
+              "name":"bgm1",
+              "src":"/assets/music/backgroundMusic/BGM01.mp3"
             }
           ],
-          "material": [
+          "material":[
             {
-              "name": "名称",
-              "src": "位置"
+              "name":"名称",
+              "src":"位置"
             }
           ]
         }
       },
-      "node": [
+      "node":[
         {
-          "id": "1",
-          "dialogue": {
-            "name": "ZHF",
-            "headImg": "",
-            "content": [
+          "id":"id",
+          "dialogue":{
+            "name":"ZHF",
+            "headImg":"",
+            "content":[
+              "...",
               "你好世界",
-              "我是ZHF",
+              "我是郑浩枫",
               "这是一个测试项目",
               "我将在这里演示z-game-engine引擎的一些功能",
               "那个泳池是背景图",
               "对话左边的是我的头图（headImage）"
             ]
           },
-          "role": [
+          "role":[
             {
-              "name": "ZHF",
-              "status": "状态",
-              "position": "right"
+              "name":"人物名称",
+              "status":"状态",
+              "position":"方位"
             }
           ],
-          "background": {
-            "name": "bg1"
+          "background":{
+            "name":"bg1"
           },
-          "music": {
-            "backgroundMusic": {
+          "music":{
+            "backgroundMusic":{
               "name": "bgm1"
             },
-            "roleMusic": {
-              "name": "人物音乐名"
-            }
+            "roleMusic":[
+              "...",
+              "你好世界",
+              "我是ZHF",
+              "这是一个测试项目",
+              "演示Z引擎的一些功能",
+              "那个泳池是背景图",
+              "对话左边的是我的头图"
+            ]
           }
         },
         {
-          "id": "2",
-          "dialogue": {
-            "name": "ZHF",
-            "headImg": "",
-            "content": ["现在出现的是我的立绘（roleImage）"]
+          "id":"id",
+          "dialogue":{
+            "name":"ZHF",
+            "headImg":"",
+            "content":["现在出现的是我的立绘（roleImage）"]
           },
-          "role": [
+          "role":[
             {
-              "name": "ZHF",
-              "status": "状态",
-              "position": "left"
+              "name":"ZHF",
+              "status":"状态",
+              "position":"left"
             }
           ],
-          "background": {
-            "name": "bg1"
+          "background":{
+            "name":"bg1"
           },
-          "music": {
-            "backgroundMusic": {
-              "name": "bgm1"
+          "music":{
+            "backgroundMusic":{
+              "name":"bgm1"
             },
-            "roleMusic": {
-              "name": "人物音乐名"
-            }
+            "roleMusic":[
+              "现在出现的是我的立绘"
+            ]
           }
         },
         {
-          "id": "3",
-          "dialogue": {
-            "name": "ZHF",
-            "headImg": "",
-            "content": ["当然，右边也有一个人物位置"]
+          "id":"id",
+          "dialogue":{
+            "name":"ZHF",
+            "headImg":"",
+            "content":["当然，右边也有一个人物位置"]
           },
-          "role": [
+          "role":[
             {
-              "name": "ZHF",
-              "status": "in",
-              "position": "left"
+              "name":"ZHF",
+              "status":"in",
+              "position":"left"
             },
             {
-              "name": "ZHF2",
-              "status": "in",
-              "position": "right"
+              "name":"ZHF2",
+              "status":"in",
+              "position":"right"
             }
           ],
-          "background": {
-            "name": "bg1"
+          "background":{
+            "name":"bg1"
           },
-          "music": {
-            "backgroundMusic": {
-              "name": "bgm1"
+          "music":{
+            "backgroundMusic":{
+              "name":"bgm1"
             },
-            "roleMusic": {
-              "name": "人物音乐名"
-            }
+            "roleMusic":[
+              "当然，右边也有一个人物位置"
+            ]
           }
         },
         {
-          "id": "4",
-          "dialogue": {
-            "name": "ZHF",
-            "headImg": "",
-            "content": ["现在播放的是人物语音测试，我也不知道讲的是啥"]
+          "id":"id",
+          "dialogue":{
+            "name":"ZHF",
+            "headImg":"",
+            "content":["现在播放的是人物语音测试，我也不知道讲的是啥"]
           },
-          "role": [
+          "role":[
             {
-              "name": "ZHF",
-              "status": "unchanged",
-              "position": "left"
+              "name":"ZHF",
+              "status":"unchanged",
+              "position":"left"
             },
             {
-              "name": "ZHF2",
-              "status": "unchanged",
-              "position": "right"
+              "name":"ZHF2",
+              "status":"unchanged",
+              "position":"right"
             }
           ],
-          "background": {
-            "name": "bg1"
+          "background":{
+            "name":"bg1"
           },
-          "music": {
-            "backgroundMusic": {
-              "name": "bgm1"
+          "music":{
+            "backgroundMusic":{
+              "name":"bgm1"
             },
-            "roleMusic": {
-              "name": "ogg1"
-            }
+            "roleMusic":[
+              "ogg1"
+            ]
           }
         },
         {
-          "id": "5",
-          "dialogue": {
-            "name": "ZHF",
-            "headImg": "",
-            "content": [
+          "id":"id",
+          "dialogue":{
+            "name":"ZHF",
+            "headImg":"",
+            "content":[
               "好了，到这里就结束了",
               "感谢你的观看",
               "拜拜~"
             ]
           },
-          "role": [
+          "role":[
             {
-              "name": "ZHF",
-              "status": "unchanged",
-              "position": "left"
+              "name":"ZHF",
+              "status":"unchanged",
+              "position":"left"
             },
             {
-              "name": "ZHF2",
-              "status": "out",
-              "position": "right"
+              "name":"",
+              "status":"out",
+              "position":"right"
             }
           ],
-          "background": {
-            "name": "bg1"
+          "background":{
+            "name":"bg1"
           },
-          "music": {
-            "backgroundMusic": {
-              "name": "bgm1"
+          "music":{
+            "backgroundMusic":{
+              "name":"bgm1"
             },
-            "roleMusic": {
-              "name": ""
-            }
+            "roleMusic":[
+              "到这里就结束了",
+              "感谢你的观看",
+              "拜拜"
+            ]
           }
         }
       ]
     }
   ]
 }
-```
 
+```
 ## 正在编写中
