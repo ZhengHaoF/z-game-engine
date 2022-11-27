@@ -195,26 +195,62 @@ export const initEngine = async function () {
 
     await showMaxScreen()
     //----------预载入素材-----------
+    let loadAudioDom = () => {};
     //载入人声
     let loadAudio: any[] = [];
     gameMaterial.roleMusicList.forEach((item: any, index: number) => {
         loadAudio[index] = new Audio();
         loadAudio[index].src = item.src;
     })
-    let audioInterval = setInterval(() => {
-        let loadOkNum = 0;
+    //载入背景图片
+    let loadBackgroundImg:any[] = [];
+    gameMaterial.backgroundList.forEach((item: any, index: number) => {
+        loadBackgroundImg[index] = new Image();
+        loadBackgroundImg[index].src = item.src;
+    })
+    //载入人物立绘
+    let loadRoleImg:any[] = [];
+    gameMaterial.roleList.forEach((item: any, index: number)=>{
+        loadRoleImg[index] = new Image();
+        loadRoleImg[index].src = item.roleImg;
+
+
+    })
+    //加载进度
+    let intervalNumber = setInterval(() => {
+        let loadAudioOkNum = 0;
+        let loadBackgroundOkNum = 0;
+        let loadRoleImgOkNum = 0;
         loadAudio.forEach((item: any, index: number) => {
             if (item.readyState === 4) {
-                loadOkNum++
-            }
-            if (loadOkNum >= loadAudio.length - 1) {
-                //加载完成
-                clearInterval(audioInterval)
-                hideMaxScreen()
+                loadAudioOkNum++
             }
         })
-        gameDom.maxScreen.innerText = `人声音频加载载入${loadOkNum}/${loadAudio.length}`;
-        console.log(`人声音频载入${loadOkNum}/${loadAudio.length}`)
+        loadBackgroundImg.forEach((item:any,index:number)=>{
+            if(item.complete){
+                loadBackgroundOkNum++
+            }
+        })
+        loadRoleImg.forEach((item:any,index:number)=>{
+            if(item.complete){
+                loadRoleImgOkNum++
+            }
+        })
+        if (
+            loadAudioOkNum >= loadAudio.length - 1 &&
+            loadBackgroundOkNum >= loadBackgroundImg.length -1 &&
+            loadRoleImgOkNum >= loadRoleImg.length -1
+        ) {
+            //加载完成
+            clearInterval(intervalNumber)
+            hideMaxScreen()
+        }
+        gameDom.maxScreen.innerText = `
+        人声音频载入${loadAudioOkNum}/${loadAudio.length}
+        背景图载入${loadBackgroundOkNum}/${loadBackgroundImg.length}
+        人物素材立绘载入${loadRoleImgOkNum}/${loadRoleImg.length}
+        `;
+
     }, 100);
     //----------预载入素材-----------
 
