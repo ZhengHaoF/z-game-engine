@@ -1,5 +1,15 @@
-# Z Game Engine
+# Z Game Engine <small>0.1</small>
 
-一个基于Web的文字游戏引擎
+> 一个基于Web的游戏引擎，采用TS编写
 
-http://engine.zhfblog.top
+- 简单、轻便
+- 开箱即用
+- 随时随地浏览作品
+
+[剧本解析器](https://github.com/ZhengHaoF/z-game-engine)
+
+[剧本编辑器](https://github.com/ZhengHaoF/z-game-engine-edit)
+
+[文档](http://engine.zhfblog.top/)
+
+[演示](http://demo.engine.zhfblog.top/)
