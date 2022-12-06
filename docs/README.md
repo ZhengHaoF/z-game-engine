@@ -158,36 +158,80 @@
 ### 完整剧本Json
 
 ```json
-                {
-  "id": "id",
-  "dialogue": {
-    "content": [
-      {
-        "name": "名称",
-        "text": "文字",
-        "roleMusic": "语音"
-      },
-      {
-        "text": "文字",
-        "roleMusic": "语音"
-      }
-    ]
-  },
-  "role": [
+{
+  "name": "剧本名",
+  "info": "剧本信息",
+  "author": "作者",
+  "chapter": [
     {
-      "name": "人物名称",
-      "status": "状态(in,out,unchange)",
-      "position": "方位(left,right)"
+      "name": "章节名",
+      "info": "章节信息",
+      "material": {
+        "roleList": [
+          {
+            "name": "姓名",
+            "roelImg": "立绘",
+            "headImg": "头图"
+          }
+        ],
+        "backgroundList": [
+          {
+            "name": "名称",
+            "src": "位置"
+          }
+        ],
+        "musicList": {
+          "role": [
+            {
+              "name": "名称",
+              "src": "位置"
+            }
+          ],
+          "background": [
+            {
+              "name": "名称",
+              "src": "位置"
+            }
+          ],
+          "material": [
+            {
+              "name": "名称",
+              "src": "位置"
+            }
+          ]
+        }
+      },
+      "node": [
+        {
+          "id": "id",
+          "dialogue": {
+            "content": [
+              {
+                "name": "名称",
+                "text": "文字",
+                "roleMusic": "语音"
+              }
+            ]
+          },
+          "role": [
+            {
+              "name": "人物名称",
+              "status": "状态(in,out,unchange)",
+              "position": "方位(left,right)"
+            }
+          ],
+          "background": {
+            "name": "背景名称"
+          },
+          "music": {
+            "backgroundMusic": {
+              "name": "背景音乐名"
+            }
+          }
+        }
+      ]
     }
-  ],
-  "background": {
-    "name": "背景名称"
-  },
-  "music": {
-    "backgroundMusic": {
-      "name": "背景音乐名"
-    }
-  }
+  ]
 }
 ```
 
